@@ -1,2 +1,24 @@
-# KindleBrowserPatch
-Patch to enable downloading any kind of files and browsing any protocol
+# Kindle Browser Patch
+This is a patch for the built-in web browser on Kindle devices. It provides the following features:
+- Remove the restriction on what kind of filetypes you can download
+- Remove the restriction on what protocols you can browse, enabling the use of `file://`
+
+It was developed for the Kindle 11th Generation 2022 (KT5) on firmware 5.17.1.0.3, but likely works on all armhf Kindles running firmware >= 5.16.3. In any case, there is very little risk in giving it a try. Please edit this README if you get it working on your device.
+
+Known working devices:
+- KT5 (Winterbreak, 5.17.1.0.3)
+
+## Installation
+Prerequisites:
+- Jailbreak with root
+- KUAL
+
+Method:
+1. Download the latest release and extract it to `/mnt/us/extensions` on your Kindle, such that you now have a folder at `/mnt/us/extensions/kindle_browser_patch`
+2. Open KUAL and select Kindle Browser Patch --> Install
+3. Don't touch anything for about 3 minutes while it installs. You will not see any kind of visual indication of progress (sorry, I was too lazy to make a progress bar).
+4. When it's finished, the browser should open automatically if it was successful. Browse to `file:///` to test it out and see that it's working! If after 3 minutes the browser doesn't appear, your device likely isn't compatible. There is no harm to your device in this case, simply delete the files.
+5. If you successfully installed it, and you wish to uninstall, you MUST do so through the KUAL menu first. Do not simply delete the files off your device, or you will be left without a functional browser until you put the files back on and uninstall.
+
+## Troubleshooting
+Check the install/uninstall logs at `/mnt/us/extensions/kindle_browser_patch/kindle_browser_patch.log`.
