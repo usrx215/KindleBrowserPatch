@@ -3,7 +3,7 @@ This is a patch for the built-in web browser on Kindle devices. It provides the 
 - Remove the restriction on what kind of filetypes you can download
 - Remove the restriction on what protocols you can browse, enabling the use of `file://`
 
-It was developed for the Kindle 11th Generation 2022 (KT5) on firmware 5.17.1.0.3, but likely works on all armhf Kindles running firmware >= 5.16.3. In any case, there is very little risk in giving it a try. Please edit this README if you get it working on your device.
+It was developed for the Kindle 11th Generation 2022 (KT5) on firmware 5.17.1.0.3, but likely works on all armhf Kindles running firmware >= 5.16.4. In any case, there is very little risk in giving it a try. Please edit this README if you get it working on your device.
 
 Known working devices:
 - KT5 (Winterbreak, 5.17.1.0.3)
