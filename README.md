@@ -7,6 +7,7 @@ It was developed for the Kindle 11th Generation 2022 (KT5) on firmware 5.17.1.0.
 
 Known working devices:
 - KT5 (Winterbreak, 5.17.1.0.3)
+- KOA3 (Winterbreak, 5.17.1.0.3)
 
 ## Installation
 Prerequisites:
