@@ -217,10 +217,21 @@ int main(int argc, char *argv[]) {
             }
         }
 
-        /* 5. Edit /mnt/us/extensions/kindle_browser_patch/patched_bin/browser to replace the string in question */
+        /* 5a. Edit /mnt/us/extensions/kindle_browser_patch/patched_bin/browser to replace the string in question */
         {
             const char *sed_cmd =
                 "sed -i 's|exec chroot /chroot /usr/bin/chromium/bin/kindle_browser|"
+                "/mnt/us/extensions/kindle_browser_patch/patched_bin/chromium/bin/kindle_browser|g' /mnt/us/extensions/kindle_browser_patch/patched_bin/browser";
+            if (run_command(sed_cmd) != 0) {
+                log_message("Failed to update browser binary location in /mnt/us/extensions/kindle_browser_patch/patched_bin/browser");
+                return EXIT_FAILURE;
+            }
+        }
+		
+		/* 5b. Edit /mnt/us/extensions/kindle_browser_patch/patched_bin/browser to replace the string in question. This one applies to the Scribe on 5.17.3 */
+        {
+            const char *sed_cmd =
+                "sed -i 's|exec /usr/bin/chromium/bin/kindle_browser|"
                 "/mnt/us/extensions/kindle_browser_patch/patched_bin/chromium/bin/kindle_browser|g' /mnt/us/extensions/kindle_browser_patch/patched_bin/browser";
             if (run_command(sed_cmd) != 0) {
                 log_message("Failed to update browser binary location in /mnt/us/extensions/kindle_browser_patch/patched_bin/browser");
