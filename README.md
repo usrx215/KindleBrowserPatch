@@ -24,3 +24,5 @@ Method:
 
 ## Troubleshooting
 Check the install/uninstall logs at `/mnt/us/extensions/kindle_browser_patch/kindle_browser_patch.log`.
+## Technical explanation
+Please visit [https://www.mobileread.com/forums/showthread.php?p=4495677#post4495677](https://www.mobileread.com/forums/showthread.php?p=4495677#post4495677).
