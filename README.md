@@ -9,6 +9,7 @@ Known working devices:
 - KT5 (Winterbreak, 5.17.1.0.3)
 - KOA3 (Winterbreak, 5.17.1.0.3)
 - KS (Winterbreak, 5.17.3)
+- PW4 (Winterbreak, 5.17.1.0.3)
 
 ## Installation
 Prerequisites:
