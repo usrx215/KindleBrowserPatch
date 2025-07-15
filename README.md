@@ -17,7 +17,7 @@ Prerequisites:
 - KUAL
 
 Method:
-1. Download the [latest release](https://github.com/emilypeto/KindleBrowserPatch/releases) and extract it to `/mnt/us/extensions` on your Kindle, such that you now have a folder at `/mnt/us/extensions/kindle_browser_patch`. It must be named exactly this or it won't install.
+1. Download the [latest release](https://github.com/emilypeto/KindleBrowserPatch/releases) (not the source code zip, the binaries above it) and extract it to `/mnt/us/extensions` on your Kindle, such that you now have a folder at `/mnt/us/extensions/kindle_browser_patch`. It must be named exactly this or it won't install.
 2. Open KUAL and select Kindle Browser Patch --> Install
 3. Don't touch anything for about 3 minutes while it installs. You will not see any kind of visual indication of progress (sorry, I was too lazy to make a progress bar).
 4. When it's finished, the browser should open automatically if it was successful. Browse to `file:///` to test it out and see that it's working! If after 3 minutes the browser doesn't appear, your device likely isn't compatible. There is no harm to your device in this case, simply delete the files.
