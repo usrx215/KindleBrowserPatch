@@ -188,33 +188,62 @@ int main(int argc, char *argv[]) {
         /* 4. Apply binary patches */
         const char *kindle_browser_path = "/mnt/us/extensions/kindle_browser_patch/patched_bin/chromium/bin/kindle_browser";
         {
-            unsigned char patch1_find[]    = { 0x0C, 0X36, 0X0C, 0X35, 0X00, 0X28, 0XE8, 0XD0, 0X01, 0X25, 0X00, 0XE0, 0X00, 0X25 };
-            unsigned char patch1_replace[] = { 0x0C, 0X36, 0X0C, 0X35, 0X00, 0X28, 0XE8, 0XD0, 0X01, 0X25, 0X00, 0XE0, 0X01, 0X25 };
+			/* We use different variants of this patch for different models and firmware versions */
 			
-			if (sizeof(patch1_find) != sizeof(patch1_replace)) {
-				log_message("Failed to apply patch, patch_find and patch_replace must be the same size");
-				return EXIT_FAILURE;
+			int patch1a_success = 1;
+			
+            unsigned char patch1a_find[]    = { 0x0C, 0X36, 0X0C, 0X35, 0X00, 0X28, 0XE8, 0XD0, 0X01, 0X25, 0X00, 0XE0, 0X00, 0X25 };
+            unsigned char patch1a_replace[] = { 0x0C, 0X36, 0X0C, 0X35, 0X00, 0X28, 0XE8, 0XD0, 0X01, 0X25, 0X00, 0XE0, 0X01, 0X25 };
+			
+			if (sizeof(patch1a_find) != sizeof(patch1a_replace)) {
+				log_message("Failed to apply patch1a, patch_find and patch_replace must be the same size");
+				patch1a_success = 0;
+			}
+			else if (apply_patch(kindle_browser_path, patch1a_find, patch1a_replace, sizeof(patch1a_find)) != 0) {
+                log_message("Failed to apply patch1a");
+				patch1a_success = 0;
+            }
+			
+			if (patch1a_success == 0) {
+				/* Colorsoft 5.18.0.1 */
+				int patch1b_success = 1;
+				
+				unsigned char patch1b_find[]    = { 0x0c, 0x36, 0x0c, 0x34, 0x00, 0x28, 0xea, 0xd0, 0x01, 0x24, 0x00, 0xe0, 0x00, 0x24 };
+				unsigned char patch1b_replace[] = { 0x0c, 0x36, 0x0c, 0x34, 0x00, 0x28, 0xea, 0xd0, 0x01, 0x24, 0x00, 0xe0, 0x01, 0x24 };
+				
+				if (sizeof(patch1b_find) != sizeof(patch1b_replace)) {
+					log_message("Failed to apply patch1b, patch_find and patch_replace must be the same size");
+					patch1b_success = 0;
+				}
+				else if (apply_patch(kindle_browser_path, patch1b_find, patch1b_replace, sizeof(patch1b_find)) != 0) {
+					log_message("Failed to apply patch1b");
+					patch1b_success = 0;
+				}
+				
+				if (patch1b_success == 0) {
+					log_message("All variants of patch1 failed. Exiting.");
+					return EXIT_FAILURE;
+				}
 			}
 			
-            if (apply_patch(kindle_browser_path, patch1_find, patch1_replace, sizeof(patch1_find)) != 0) {
-                log_message("Failed to apply first binary patch");
-                return EXIT_FAILURE;
-            }
+			log_message("Successfully applied a variant of patch1");
         }
+		
 		const char *libchromium_path = "/mnt/us/extensions/kindle_browser_patch/patched_bin/chromium/bin/libchromium.so";
         {
-            unsigned char patch2_find[]    = { 0X0D, 0X48, 0X78, 0X44, 0X05, 0X68, 0X28, 0X46, 0xA5, 0XF0, 0X87, 0XF9, 0X02, 0X46, 0X20, 0X46, 0X29, 0X46, 0XFF, 0XF7, 0XDA, 0XFF, 0X08, 0XB1 };
-            unsigned char patch2_replace[] = { 0X0D, 0X48, 0X78, 0X44, 0X05, 0X68, 0X28, 0X46, 0xA5, 0XF0, 0X87, 0XF9, 0X02, 0X46, 0X20, 0X46, 0X29, 0X46, 0XFF, 0XF7, 0XDA, 0XFF, 0X00, 0XBF };
+            unsigned char patch2_find[]    = { 0XF9, 0X02, 0X46, 0X20, 0X46, 0X29, 0X46, 0XFF, 0XF7, 0XDA, 0XFF, 0X08, 0XB1 };
+            unsigned char patch2_replace[] = { 0XF9, 0X02, 0X46, 0X20, 0X46, 0X29, 0X46, 0XFF, 0XF7, 0XDA, 0XFF, 0X00, 0XBF };
 			
 			if (sizeof(patch2_find) != sizeof(patch2_replace)) {
-				log_message("Failed to apply patch, patch_find and patch_replace must be the same size");
+				log_message("Failed to apply patch2, patch_find and patch_replace must be the same size");
 				return EXIT_FAILURE;
 			}
-			
-            if (apply_patch(libchromium_path, patch2_find, patch2_replace, sizeof(patch2_find)) != 0) {
-                log_message("Failed to apply second binary patch");
-                return EXIT_FAILURE;
+			else if (apply_patch(libchromium_path, patch2_find, patch2_replace, sizeof(patch2_find)) != 0) {
+                log_message("Failed to apply patch2");
+				return EXIT_FAILURE;
             }
+			
+			log_message("Successfully applied patch2");
         }
 
         /* 5a. Edit /mnt/us/extensions/kindle_browser_patch/patched_bin/browser to replace the string in question */
