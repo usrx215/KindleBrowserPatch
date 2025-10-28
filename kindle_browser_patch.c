@@ -192,8 +192,8 @@ int main(int argc, char *argv[]) {
 			
 			int patch1a_success = 1;
 			
-            unsigned char patch1a_find[]    = { 0x0C, 0X36, 0X0C, 0X35, 0X00, 0X28, 0XE8, 0XD0, 0X01, 0X25, 0X00, 0XE0, 0X00, 0X25 };
-            unsigned char patch1a_replace[] = { 0x0C, 0X36, 0X0C, 0X35, 0X00, 0X28, 0XE8, 0XD0, 0X01, 0X25, 0X00, 0XE0, 0X01, 0X25 };
+            unsigned char patch1a_find[]    = { 0x0c, 0x36, 0x0c, 0x35, 0x00, 0x28, 0xe8, 0xd0, 0x01, 0x25, 0x00, 0xE0, 0x00, 0x25 };
+            unsigned char patch1a_replace[] = { 0x0c, 0x36, 0x0c, 0x35, 0x00, 0x28, 0xe8, 0xd0, 0x01, 0x25, 0x00, 0xE0, 0x01, 0x25 };
 			
 			if (sizeof(patch1a_find) != sizeof(patch1a_replace)) {
 				log_message("Failed to apply patch1a, patch_find and patch_replace must be the same size");
@@ -231,8 +231,8 @@ int main(int argc, char *argv[]) {
 		
 		const char *libchromium_path = "/mnt/us/extensions/kindle_browser_patch/patched_bin/chromium/bin/libchromium.so";
         {
-            unsigned char patch2_find[]    = { 0XF9, 0X02, 0X46, 0X20, 0X46, 0X29, 0X46, 0XFF, 0XF7, 0XDA, 0XFF, 0X08, 0XB1 };
-            unsigned char patch2_replace[] = { 0XF9, 0X02, 0X46, 0X20, 0X46, 0X29, 0X46, 0XFF, 0XF7, 0XDA, 0XFF, 0X00, 0XBF };
+            unsigned char patch2_find[]    = { 0x02, 0x46, 0x20, 0x46, 0x29, 0x46, 0xff, 0xf7, 0xda, 0xff, 0x08, 0xb1 };
+            unsigned char patch2_replace[] = { 0x02, 0x46, 0x20, 0x46, 0x29, 0x46, 0xff, 0xf7, 0xda, 0xff, 0x00, 0xbf };
 			
 			if (sizeof(patch2_find) != sizeof(patch2_replace)) {
 				log_message("Failed to apply patch2, patch_find and patch_replace must be the same size");
@@ -373,3 +373,4 @@ int main(int argc, char *argv[]) {
 
     return EXIT_SUCCESS;
 }
+
